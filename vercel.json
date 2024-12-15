@@ -10,7 +10,6 @@
      "PORT": "8888",
      "DB_HOST": "127.0.0.1",
      "DB_USER": "root",
-     "DB_PASSWORD": null,
      "DB_NAME": "code_amar"
    },
    "routes": [
