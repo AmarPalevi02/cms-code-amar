@@ -54,7 +54,7 @@
 
 // #!/usr/bin/env node
 
-const app = require('../app'); // Pastikan ini mengambil instance Express
+const app = require('../app'); // mengambil instance Express
 const http = require('http');
 
 // Get port from environment and store in Express
