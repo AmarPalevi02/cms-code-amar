@@ -54,9 +54,8 @@
 
 // #!/usr/bin/env node
 
-const app = require('../app');
+const app = require('../app'); // Pastikan ini mengambil instance Express
 const http = require('http');
-const serverless = require('serverless-http');
 
 // Get port from environment and store in Express
 const port = normalizePort(process.env.PORT || '8888');
@@ -99,5 +98,3 @@ function onListening() {
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   console.log(`Server is running on ${bind}`);
 }
-
-module.exports.handler = serverless(app);
