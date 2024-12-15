@@ -2,14 +2,21 @@
    "version": 2,
    "builds": [
      {
-       "src": "app/api/app.js",
+       "src": "bin/www",
        "use": "@vercel/node"
      }
    ],
+   "env": {
+     "PORT": "8888",
+     "DB_HOST": "127.0.0.1",
+     "DB_USER": "root",
+     "DB_PASSWORD": null,
+     "DB_NAME": "code_amar"
+   },
    "routes": [
      {
        "src": "/(.*)",
-       "dest": "/app/api/app.js"
+       "dest": "bin/www"
      }
    ]
  }
