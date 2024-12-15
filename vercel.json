@@ -2,22 +2,14 @@
    "version": 2,
    "builds": [
      {
-       "src": "./app/api/index.js",
+       "src": "app/api/app.js",
        "use": "@vercel/node"
-     },
-     {
-       "src": "public/**/*",
-       "use": "@vercel/static"
      }
    ],
    "routes": [
      {
-       "src": "/code-amar/v1/(.*)",
-       "dest": "./app/api/index.js"
-     },
-     {
-       "src": "/public/(.*)",
-       "dest": "/public/$1"
+       "src": "/(.*)",
+       "dest": "app/api/app.js"
      }
    ]
  }

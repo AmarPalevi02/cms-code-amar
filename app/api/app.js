@@ -11,14 +11,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../../public')));
 app.use(cors())
 
-const routeMyJobs = require('./app/api/my_jobs/route')
-const routeBlog = require('./app/api/blog/route')
-const routeProject = require('./app/api/projects/route')
-const routeFeature = require('./app/api/feature/route')
-const routeTechstack = require('./app/api/techstack/route')
+const routeMyJobs = require('./my_jobs/route')
+const routeBlog = require('./blog/route')
+const routeProject = require('./projects/route')
+const routeFeature = require('./feature/route')
+const routeTechstack = require('./techstack/route')
 
 const v1 = '/code-amar/v1'
 
