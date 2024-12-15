@@ -1,21 +1,12 @@
 {
-  "version": 2,
   "builds": [
-    {
-      "src": "app.js",
-      "use": "@vercel/node"
-    }
+    { "src": "bin/www", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app.js"
-    }
+    { "src": "/(.*)", "dest": "bin/www" }
   ],
+  "installCommand": "npm install",
   "env": {
-    "PORT": "8888",
-    "DB_HOST": "127.0.0.1",
-    "DB_USER": "root",
-    "DB_NAME": "code_amar"
+    "PORT": "8888"
   }
 }
