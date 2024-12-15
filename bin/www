@@ -54,7 +54,7 @@
 
 // #!/usr/bin/env node
 
-const app = require('../app/api/app');
+const app = require('../app');
 const http = require('http');
 
 // Get port from environment and store in Express
