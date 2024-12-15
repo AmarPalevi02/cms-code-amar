@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
-const routeMyJobs = require('./app/api/my_jobs.js/route')
+const routeMyJobs = require('./app/api/my_jobs/route')
 const routeBlog = require('./app/api/blog/route')
 const routeProject = require('./app/api/projects/route')
 const routeFeature = require('./app/api/feature/route')
