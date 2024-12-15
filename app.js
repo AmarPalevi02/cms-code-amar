@@ -20,6 +20,10 @@ const routeProject = require('./app/api/projects/route')
 const routeFeature = require('./app/api/feature/route')
 const routeTechstack = require('./app/api/techstack/route')
 
+app.get('/', (req, res) => {
+   res.send('Heloo word')
+})
+
 const v1 = '/code-amar/v1'
 
 app.use(`${v1}/`, routeMyJobs)
