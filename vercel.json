@@ -10,7 +10,9 @@
      "MYSQL_USER": "root",
      "MYSQL_PASSWORD": "",
      "MYSQL_DATABASE": "code_amar",
-     "PORT": "8888"
+     "PORT": "8888",
+     "VERBOSE": "true"
    }
+  
  }
  
