@@ -23,7 +23,7 @@ const routeFeature = require('./app/api/feature/route');
 const routeTechstack = require('./app/api/techstack/route');
 
 app.get('/', (req, res) => {
-   res.send('Hello world');
+   res.send('Welcome here');
 });
 
 const v1 = '/code-amar/v1';
