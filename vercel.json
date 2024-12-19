@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/code-amar/v1/(.*)",
       "dest": "bin/www"
     }
   ],
