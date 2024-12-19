@@ -33,6 +33,7 @@ app.use(`${v1}/`, routeProject);
 app.use(`${v1}/`, routeFeature);
 app.use(`${v1}/`, routeTechstack);
 
-// Ekspor untuk mode server dan AWS Lambda
+// Ekspor handler untuk Vercel
+const serverless = require('serverless-http');
 module.exports = app;
-module.exports.handler = require('serverless-http')(app);
+module.exports.handler = serverless(app);

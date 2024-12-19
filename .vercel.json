@@ -10,6 +10,10 @@
     {
       "src": "/code-amar/v1/(.*)",
       "dest": "app.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
     }
   ],
   "installCommand": "npm install",
