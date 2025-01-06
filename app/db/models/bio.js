@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Bio.belongsToMany(models.Jobs, {
         through: 'Abouts',
         foreignKey: 'bioId',
+        onDelete: 'CASCADE'
       })
     }
   }
@@ -29,6 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Bio',
   });
-  
+
   return Bio;
 };

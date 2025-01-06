@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Jobs.belongsToMany(models.Bio, {
         through: 'Abouts',
         foreignKey: 'jobId',
+        onDelete: 'CASCADE',
       })
     }
   }

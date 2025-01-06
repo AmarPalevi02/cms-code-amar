@@ -37,12 +37,12 @@ const createMyJobs = async (req, res, next) => {
 const getAllMyJobs = async (req, res, next) => {
    try {
       const result = await Bio.findAll({
-         attributes: ['id', 'about', 'city'], 
+         attributes: ['id', 'about', 'city'],
          include: [
             {
                model: Jobs,
                through: { attributes: [] },
-               attributes: ['id', 'job'] 
+               attributes: ['id', 'job']
             },
          ],
       });
@@ -82,31 +82,135 @@ const updateById = async (req, res, next) => {
       next(error)
    }
 }
+//    try {
+//       const { id } = req.params
 
-const destroyByOne = async (req, res, next) => {
+//       const check = await Bio.findOne({ where: { id: id } })
+
+//       if (!check) {
+//          res.status(400).json({
+//             message: `Tidak ada id : ${id}`
+//          })
+//       }
+
+//       await Abouts.destroy({
+//          where: {
+//             bioId: id
+//          }
+//       });
+
+//       await Bio.destroy({
+//          where: { id: id }
+//       });
+
+//       await Jobs.destroy({
+//          where: {
+//             jobId: id
+//          }
+//       })
+
+//       const result = await Bio.findOne({
+//          where: { id: id },
+//          attributes: ['id', ,'job', 'city', 'about']
+//       })
+
+//       return result
+
+//    } catch (error) {
+//       console.log(error)
+//       return res.status(500).json({
+//          message: 'Terjadi kesalahan pada server.',
+//       });
+//    }
+// }
+
+// const destroyByOne = async (req, res, next) => {
+//    try {
+//      const { id } = req.params;
+
+//      // Cek apakah Bio ada
+//      const check = await Bio.findOne({ where: { id: id } });
+
+//      if (!check) {
+//        return res.status(400).json({
+//          message: `Tidak ada id : ${id}`
+//        });
+//      }
+
+//      // Ambil semua Jobs yang terkait dengan Bio ini
+//      const associatedJobs = await Abouts.findAll({
+//        where: { bioId: id },
+//        attributes: ['jobId']
+//      });
+
+//      // Hapus data dari tabel Abouts yang berhubungan dengan Bio
+//      await Abouts.destroy({
+//        where: {
+//          bioId: id
+//        }
+//      });
+
+//      // Hapus Jobs yang terkait dengan Bio ini (opsional, tergantung kebutuhan)
+//      for (let job of associatedJobs) {
+//        await Jobs.destroy({
+//          where: { id: job.jobId }
+//        });
+//      }
+
+//      // Setelah Abouts dihapus, baru hapus data Bio
+//      await Bio.destroy({
+//        where: { id: id }
+//      });
+
+
+//    } catch (error) {
+//      console.log(error);
+//      return res.status(500).json({
+//        message: 'Terjadi kesalahan pada server.',
+//      });
+//    }
+//  };
+
+const destroyByOne = async (id) => {
    try {
-      const { id } = req.params
-
-      const check = await Abouts.findOne({ where: { id: id } })
+      const check = await Bio.findOne({ where: { id: id } });
 
       if (!check) {
-         res.status(400).json({
-            message: `Tidak ada id : ${id}`
-         })
+         return { message: `Tidak ada id : ${id}` };
       }
 
-      await Abouts.destroy({ where: { id: id } })
+      const associatedJobs = await Abouts.findAll({
+         where: { bioId: id },
+         attributes: ['jobId', 'id'],
+      });
 
-      const result = await Abouts.findOne({
+      const aboutToDelete = await Abouts.findAll({
+         where: { bioId: id },
+      });
+
+      await Abouts.destroy({
+         where: { bioId: id },
+      });
+
+      for (let job of associatedJobs) {
+         await Jobs.destroy({
+            where: { id: job.jobId },
+         });
+      }
+
+      await Bio.destroy({
          where: { id: id },
-         attributes: ['id', 'job', 'city', 'about']
-      })
+      });
 
-      return result
+      return {
+         message: `Data Bio dengan id ${id} dan Jobs terkait berhasil dihapus beserta relasi Abouts-nya.`,
+         abouts: aboutToDelete
+      };
    } catch (error) {
-      next(error)
+      console.log(error);
+      return { message: 'Terjadi kesalahan pada server.' };
    }
-}
+};
 
 module.exports = {
    createMyJobs,
