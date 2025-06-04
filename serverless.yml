@@ -1,7 +1,0 @@
-service: my-service
-provider:
-  name: aws
-  runtime: nodejs18.x
-functions:
-  app:
-    handler: bin/www.handler
