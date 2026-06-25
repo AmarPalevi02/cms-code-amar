@@ -1,4 +1,6 @@
-const app = require('../app'); // mengambil instance Express
+require('dotenv').config()
+
+const app = require('../app');
 const http = require('http');
 
 // Get port from environment and store in Express
